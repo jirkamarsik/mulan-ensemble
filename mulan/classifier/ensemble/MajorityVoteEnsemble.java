@@ -26,6 +26,6 @@ public class MajorityVoteEnsemble extends MultiLabelEnsembleLearner {
     for (int label = 0; label < labelTallies.length; label++)
       majorityVector[label] = (labelTallies[label] >= 0);
 
-    return new MultiLabelOutput(unionVector);
+    return new MultiLabelOutput(majorityVector);
   }
 }
