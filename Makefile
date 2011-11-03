@@ -7,7 +7,10 @@ JC = javac
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-	mulan/classifier/ensemble/MultiLabelEnsembleLearner.java
+	mulan/classifier/ensemble/MultiLabelEnsembleLearner.java \
+	mulan/classifier/ensemble/IntersectionEnsemble.java \
+	mulan/classifier/ensemble/UnionEnsemble.java \
+	mulan/classifier/ensemble/MajorityVoteEnsemble.java
 
 default: classes
 

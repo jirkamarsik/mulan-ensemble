@@ -8,13 +8,22 @@ import weka.core.SerializedObject;
 
 public abstract class MultiLabelEnsembleLearner implements MultiLabelLearner {
 
-  private MultiLabelLearner[] classifiers;
+  protected MultiLabelLearner[] classifiers;
 
   public MultiLabelEnsembleLearner(MultiLabelLearner[] theClassifiers) {
     classifiers = theClassifiers;
   }
 
-  public abstract MultiLabelOutput makePrediction(Instance instance);
+  public abstract MultiLabelOutput makePredictionInternal
+                                    (MultiLabelOutput[] classifierOutputs);
+
+  public MultiLabelOutput makePrediction(Instance instance) throws Exception {
+    MultiLabelOutput[] classifierOutputs = new MultiLabelOutput[classifiers.length];
+    for (int i = 0; i < classifiers.length; i++)
+      classifierOutputs[i] = classifiers[i].makePrediction(instance);
+
+    return makePredictionInternal(classifierOutputs);
+  }
 
   public void build(MultiLabelInstances instances) throws Exception {
     for (int i = 0; i < classifiers.length; i++)
