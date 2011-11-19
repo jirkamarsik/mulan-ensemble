@@ -17,11 +17,11 @@ public abstract class MultiLabelEnsembleLearner implements MultiLabelLearner {
   public abstract MultiLabelOutput makePredictionInternal
                                     (MultiLabelOutput[] classifierOutputs);
 
-  public MultiLabelOutput makePrediction(Instance instance) throws Exception {
+  public MultiLabelOutput makePrediction(Instance instance) throws Exception
+  {
     MultiLabelOutput[] classifierOutputs = new MultiLabelOutput[classifiers.length];
     for (int i = 0; i < classifiers.length; i++)
       classifierOutputs[i] = classifiers[i].makePrediction(instance);
-
     return makePredictionInternal(classifierOutputs);
   }
 
@@ -31,13 +31,7 @@ public abstract class MultiLabelEnsembleLearner implements MultiLabelLearner {
   }
 
   public boolean isUpdatable() {
-    boolean updatable = true;
-
-    for (int i = 0; i < classifiers.length; i++)
-      if (!classifiers[i].isUpdatable())
-        updatable = false;
-
-    return updatable;
+    return false;
   }
 
   public MultiLabelLearner makeCopy() throws Exception {
