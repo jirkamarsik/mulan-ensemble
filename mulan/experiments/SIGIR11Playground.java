@@ -20,9 +20,12 @@ public class SIGIR11Playground {
 
   private static void evaluateLearner(Evaluator eval, MultiLabelInstances dataset,
                                       MultiLabelLearner learner, int numFolds,
-                                      String header) {
-    System.out.println(header);
-    System.out.println(eval.crossValidate(learner, dataset, numFolds));
+                                      String header, String flag, String[] args)
+                      throws Exception {
+    if (Utils.getFlag(flag, args)) {
+      System.out.println(header);
+      System.out.println(eval.crossValidate(learner, dataset, numFolds));
+    }
   }
 
   public static void main(String[] args) throws Exception {
@@ -63,18 +66,18 @@ public class SIGIR11Playground {
     int numFolds = 10;
     Evaluator eval = new Evaluator();
 
-    evaluateLearner(eval, dataset, rakel, numFolds, "RAkEL:");
-    evaluateLearner(eval, dataset, clr, numFolds, "CLR:");
-    evaluateLearner(eval, dataset, mlknn, numFolds, "ML-kNN:");
-    evaluateLearner(eval, dataset, homer, numFolds, "HOMER:");
-    evaluateLearner(eval, dataset, iblr, numFolds, "IBLR:");
+    evaluateLearner(eval, dataset, rakel, numFolds, "RAkEL:", "rakel", args);
+    evaluateLearner(eval, dataset, clr, numFolds, "CLR:", "clr", args);
+    evaluateLearner(eval, dataset, mlknn, numFolds, "ML-kNN:", "mlknn", args);
+    evaluateLearner(eval, dataset, homer, numFolds, "HOMER:", "homer", args);
+    evaluateLearner(eval, dataset, iblr, numFolds, "IBLR:", "iblr", args);
 
-    evaluateLearner(eval, dataset, intersectionEnsemble, numFolds, "Intersection rule:");
-    evaluateLearner(eval, dataset, unionEnsemble, numFolds, "Union rule:");
-    evaluateLearner(eval, dataset, majorityVoteEnsemble, numFolds, "Majority Vote rule:");
-    evaluateLearner(eval, dataset, minimumEnsemble, numFolds, "Minimum rule:");
-    evaluateLearner(eval, dataset, maximumEnsemble, numFolds, "Maximum rule:");
-    evaluateLearner(eval, dataset, meanEnsemble, numFolds, "Mean rule:");
-    evaluateLearner(eval, dataset, TopKEnsemble, numFolds, "Top-K rule:");
+    evaluateLearner(eval, dataset, intersectionEnsemble, numFolds, "Intersection rule:", "intersection", args);
+    evaluateLearner(eval, dataset, unionEnsemble, numFolds, "Union rule:", "union", args);
+    evaluateLearner(eval, dataset, majorityVoteEnsemble, numFolds, "Majority Vote rule:", "majority", args);
+    evaluateLearner(eval, dataset, minimumEnsemble, numFolds, "Minimum rule:", "minimum", args);
+    evaluateLearner(eval, dataset, maximumEnsemble, numFolds, "Maximum rule:", "maximum", args);
+    evaluateLearner(eval, dataset, meanEnsemble, numFolds, "Mean rule:", "mean", args);
+    evaluateLearner(eval, dataset, TopKEnsemble, numFolds, "Top-K rule:", "topk", args);
   }
 }
