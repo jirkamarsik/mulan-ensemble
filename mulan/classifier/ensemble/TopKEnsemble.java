@@ -37,8 +37,8 @@ public class TopKEnsemble extends MultiLabelEnsembleLearner {
       Arrays.sort(labelScores);
       scoreVector[i] = 0;
       int K = Math.min(numScoresToRegard, labelScores.length);
-      for (int k = 0; k < K; k++)
-        scoreVector[i] += labelScores[k];
+      for (int k = 1; k <= K; k++)
+        scoreVector[i] += labelScores[labelScores.length - k];
       scoreVector[i] /= K;
     }
 

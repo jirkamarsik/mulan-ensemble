@@ -21,8 +21,10 @@ public class IntersectionEnsemble extends MultiLabelEnsembleLearner {
     for (int i = 0; i < intersectionVector.length; i++) {
       intersectionVector[i] = true;
       for (int j = 0; j < bipartitionVectors.length; j++)
-        if (!bipartitionVectors[j][i])
+        if (!bipartitionVectors[j][i]) {
           intersectionVector[i] = false;
+          break;
+        }
     }
 
     return new MultiLabelOutput(intersectionVector);

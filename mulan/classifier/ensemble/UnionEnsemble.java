@@ -21,8 +21,10 @@ public class UnionEnsemble extends MultiLabelEnsembleLearner {
     for (int i = 0; i < unionVector.length; i++) {
       unionVector[i] = false;
       for (int j = 0; j < bipartitionVectors.length; j++)
-        if (!bipartitionVectors[j][i])
-          unionVector[i] = false;
+        if (bipartitionVectors[j][i]) {
+          unionVector[i] = true;
+          break;
+        }
     }
 
     return new MultiLabelOutput(unionVector);
