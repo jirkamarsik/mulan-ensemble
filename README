@@ -1,2 +1,7 @@
 An implementation the ensemble techniques used in "Enhancing multi-label music
 genre classification through ensemble techniques" for Mulan.
+
+To launch the evaluations, run
+  java mulan/experiments/SIGIR11Playground -arff data/set.arff -xml data/set.xml
+
+where the data/set files can be any valid Mulan dataset.

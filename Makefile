@@ -14,7 +14,9 @@ CLASSES = \
 	mulan/classifier/ensemble/MinimumEnsemble.java \
 	mulan/classifier/ensemble/MaximumEnsemble.java \
 	mulan/classifier/ensemble/MeanEnsemble.java \
-	mulan/classifier/ensemble/TopKEnsemble.java
+	mulan/classifier/ensemble/TopKEnsemble.java \
+	mulan/experiments/SIGIR11Playground.java
+
 
 default: classes
 
