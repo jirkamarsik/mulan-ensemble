@@ -23,7 +23,6 @@ public class SIGIR11Playground {
                                       String header) {
     System.out.println(header);
     System.out.println(eval.crossValidate(learner, dataset, numFolds));
-    System.out.println("\n\n");
   }
 
   public static void main(String[] args) throws Exception {
