@@ -1,12 +1,15 @@
 package mulan.classifier.ensemble;
 
+import java.io.Serializable;
+
 import mulan.classifier.MultiLabelLearner;
 import mulan.classifier.MultiLabelOutput;
 import mulan.data.MultiLabelInstances;
 import weka.core.Instance;
 import weka.core.SerializedObject;
 
-public abstract class MultiLabelEnsembleLearner implements MultiLabelLearner {
+public abstract class MultiLabelEnsembleLearner implements MultiLabelLearner,
+                                                           Serializable {
 
   protected MultiLabelLearner[] classifiers;
 
