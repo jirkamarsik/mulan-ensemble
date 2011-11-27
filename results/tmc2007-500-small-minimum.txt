@@ -1,0 +1,9 @@
+Average Precision: 0.6344±0.0227
+Coverage: 9.3977±0.5394
+OneError: 0.2747±0.0396
+IsError: 0.6765±0.0340
+ErrorSetSize: 11.5653±0.7393
+Ranking Loss: 0.2450±0.0148
+Mean Average Precision: NaN±NaN
+Micro-averaged AUC: 0.7716±0.0096
+Macro-averaged AUC: NaN±NaN

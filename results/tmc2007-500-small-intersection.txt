@@ -1,0 +1,12 @@
+Hamming Loss: 0.0772±0.0039
+Subset Accuracy: 0.1433±0.0255
+Example-Based Precision: NaN±NaN
+Example-Based Recall: 0.3173±0.0241
+Example-Based F Measure: NaN±NaN
+Example-Based Accuracy: 0.3078±0.0236
+Micro-averaged Precision: 0.8354±0.0347
+Micro-averaged Recall: 0.2823±0.0194
+Micro-averaged F-Measure: 0.4214±0.0219
+Macro-averaged Precision: NaN±NaN
+Macro-averaged Recall: NaN±NaN
+Macro-averaged F-Measure: NaN±NaN
