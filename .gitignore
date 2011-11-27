@@ -1,2 +1,7 @@
 *.class
 .*.swp
+*.bbl
+*.blg
+*.aux
+*.log
+*.pdf
