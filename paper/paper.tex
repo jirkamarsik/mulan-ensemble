@@ -1,5 +1,10 @@
 \documentclass{acm_proc_article-sp}
 
+% scientific notation, 1\e{9} will print as 1x10^9
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+\usepackage{amsmath} % needed for pmatrix
+\usepackage{booktabs} % Fancy tables
+
 \begin{document}
 
 \title{Multi-Label Text Categorization via Ensemble Techniques}
@@ -8,7 +13,8 @@
 \author{
 % 1st. author
 \alignauthor
-Martin Boro\v{s}\\
+Martin Boro\v{s}\
+\
        \affaddr{Some}\\
        \affaddr{Martin's}\\
        \affaddr{address}\\
@@ -68,6 +74,9 @@ techniques, the use of Mulan, the selection and format of the data. Estimated
 \section{Results}
 Here will be the tables containing the results of our experiments and some
 analysis of the results. Estimated 1 page.
+
+\input{bipartition-table}
+\input{score-table}
 
 \section{Conclusion}
 A summary of what we observed in the results and the conclusions reached from
