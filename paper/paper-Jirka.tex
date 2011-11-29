@@ -1,7 +1,31 @@
 \section{Experiment Setup}
-This would be the place to mention the implementation of the ensemble
-techniques, the use of Mulan, the selection and format of the data. Estimated
-1/4 of a page.
+To perform the evaluation, we used the Mulan \cite{mulan} open source
+library. We implemented the ensemble techniques on top of the provided
+interfaces and used the included evaluation framework to perform
+10-fold cross-validation for all the individual multi-label learners
+and the ensemble techniques.
+
+The dataset used was obtained from the Mulan website
+(http://mulan.sourceforge.net/datasets.html). The 28596 instances of
+the Text Mining Challenge were randomly stripped down to about 2000
+instances to make running the experiments feasible on our
+equipment. Instead of the full data where every document is
+represented by 49060 term incidence booleans, we used a stripped down
+version processed by feature selection which uses only the 500 most
+important terms. Again, this was done to make the execution of the
+experiments viable on our machines.
+
+The 5 constituent classifiers were set up using provided default or
+customary settings. This means that RAkEL was using Label Powerset as
+the internal multi-label learner which in turn used J48 decision trees
+for single-label classification. CLR used SVM as the internal
+classifier, which was trained using the SMO learner with a linear
+kernel. ML-kNN and IBLR were initialized using the default
+implementation of their constructors. For HOMER, we used Binary
+Relevance as the internal classifier which in turn used SVMs for
+binary classification. The number of clusters was set to 2 and the
+balanced clustering method was used (these settings were taken from
+the evaluations done in \cite{homer}).
 
 \section{Results}
 
