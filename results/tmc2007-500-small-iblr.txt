@@ -1,21 +1,21 @@
-Hamming Loss: 0,0752+0,0042
-Subset Accuracy: 0,1772+0,0163
-Example-Based Precision: NaN+NaN
-Example-Based Recall: 0,5209+0,0305
-Example-Based F Measure: NaN+NaN
-Example-Based Accuracy: 0,4429+0,0205
-Micro-averaged Precision: 0,6679+0,0261
-Micro-averaged Recall: 0,4890+0,0283
-Micro-averaged F-Measure: 0,5642+0,0239
-Macro-averaged Precision: NaN+NaN
-Macro-averaged Recall: NaN+NaN
-Macro-averaged F-Measure: NaN+NaN
-Average Precision: 0,7317+0,0206
-Coverage: 4,0045+0,4571
-OneError: 0,2972+0,0395
-IsError: 0,6222+0,0396
-ErrorSetSize: 3,7347+0,5871
-Ranking Loss: 0,0855+0,0115
-Mean Average Precision: NaN+NaN
-Micro-averaged AUC: 0,9098+0,0134
-Macro-averaged AUC: NaN+NaN
+Hamming Loss: 0.0752±0,0042
+Subset Accuracy: 0.1772±0,0163
+Example-Based Precision: NaN±NaN
+Example-Based Recall: 0.5209±0,0305
+Example-Based F Measure: NaN±NaN
+Example-Based Accuracy: 0.4429±0,0205
+Micro-averaged Precision: 0.6679±0,0261
+Micro-averaged Recall: 0.4890±0,0283
+Micro-averaged F-Measure: 0.5642±0,0239
+Macro-averaged Precision: NaN±NaN
+Macro-averaged Recall: NaN±NaN
+Macro-averaged F-Measure: NaN±NaN
+Average Precision: 0.7317±0,0206
+Coverage: 4.0045±0,4571
+OneError: 0.2972±0,0395
+IsError: 0.6222±0,0396
+ErrorSetSize: 3.7347±0,5871
+Ranking Loss: 0.0855±0,0115
+Mean Average Precision: NaN±NaN
+Micro-averaged AUC: 0.9098±0,0134
+Macro-averaged AUC: NaN±NaN
