@@ -8,7 +8,76 @@ techniques, the use of Mulan, the selection and format of the data. Estimated
 \input{bipartition-table}
 \input{score-table}
 
+The results of our experiments can be seen in Tables 1 and 2 with the
+best achieved values highlighted in bold-face.
 
+First, we give an explanation of the measures and their abbreviations
+used in the two tables. HL (Hamming Loss), SA (Subset Accuracy),
+Recall (Example-based Recall), Accu.\ (Example-based Accuracy), MicroP
+(Micro-averaged Precision), MicroR (Micro-averaged Recall),
+MicroF\textsubscript{1} (Micro-averaged F\textsubscript{1}), AP
+(Average Precision), CO (Coverage), OE (One Error) and RL (Ranking
+Loss) are all evaluation measures described in \cite{MLLSlides}. IE
+(Is Error) is the relative frequency of the predicted labelset being
+different from the true labelset. ESS (Error Set Size) represents the
+number of label pairs where an unrelevant label was ranked above a
+relevant one and is thus basically isomorphic to the Ranking Loss
+measure. MicroAUC is the micro-averaged area under the ROC curve.
+
+Some expected statistics are conspicuously missing. Example-based
+precision is not given since for some examples, the positive rate of
+the classifier might be zero and precision is thus not
+defined. Therefore, the example-based precision, which is meant to be
+the average of such precision values, is not defined either. The same
+goes for the example-based F\textsubscript{1} measure which is a
+function of the precision and recall measures.
+
+Also missing are all macro-averaged measures. This follows from the
+fact that for some label, the statistic cannot be defined due to the
+contingency tables being degenerate. Therefore an average over
+undefined values stays undefined. Micro-averaged measures on the other
+hand are fine, as they average the contingency tables for all the
+labels and then compute the statistics from the final contingency
+table, which eliminates the probability of the contingency table being
+degenerate.
+
+\subsection*{Analyzing the Results}
+
+Let us start with the bipartition-based classifiers whose results are
+posted in Table~1. For all the first four example-based measures, CLR
+seems to be the best individual classifier, which might lead us to
+think that the ensemble techniques will fair worse as no measure would
+make us prefer any other method. The micro-averaged measures however
+reveal that some methods might be actually advantageous in some
+situations (see RAkEL's micro-averaged precision, which is higher than
+that of CLR). This paints a different picture than
+\cite{sanden2011enhancing} where CLR was not the best performer and if
+it excelled in something, it was precision. This goes to show that
+different classifiers end up being more or less useful given the data
+they are used on.
+
+When we consider the ensemble techniques, performance tends to
+increase in some measures and decrease in others. The majority vote
+technique ends up being better in Hamming Loss and Subset Accuracy,
+but loses to CLR in Accuracy and Micro-averaged
+F\textsubscript{1}. This leads us to believe that bipartition-based
+ensemble techniques do not offer a significant improvement of general
+performance. However, one-sided measures like precision and recall can
+be greatly improved by using the intersection and union techniques
+which might be handy for specific applications.
+
+Let us now turn to the results yielded by the score-based classifiers
+on display on Table~2. The individual classifiers are clearly
+dominated by CLR which offers the best performance for all the
+evaluation metrics, confirming its appropriateness for the problem at
+hand. In face of this one-sided result, we might not expect the
+ensemble methods to provide much of an improvement. However, in all of
+the metrics but IE, the mean and top\textsubscript{3} ensemble
+techniques offer better performance than CLR alone. This corroborates
+the results seen in \cite{sanden2011enhancing}, where the mean and
+top\textsubscript{3} techniques consistently beat the individual
+classifiers as well. Similarly to \cite{sanden2011enhancing},
+top\textsubscript{3} seems to be the better of the two techniques.
 
 \section{Conclusion}
 A summary of what we observed in the results and the conclusions reached from
