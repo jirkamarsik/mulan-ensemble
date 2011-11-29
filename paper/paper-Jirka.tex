@@ -34,10 +34,10 @@ function of the precision and recall measures.
 
 Also missing are all macro-averaged measures. This follows from the
 fact that for some label, the statistic cannot be defined due to the
-contingency tables being degenerate. Therefore an average over
-undefined values stays undefined. Micro-averaged measures on the other
-hand are fine, as they average the contingency tables for all the
-labels and then compute the statistics from the final contingency
+contingency tables being degenerate. Therefore, an average over
+undefined values stays undefined. Micro-averaged measures, on the
+other hand, are fine, as they average the contingency tables for all
+the labels and then compute the statistics from the final contingency
 table, which eliminates the probability of the contingency table being
 degenerate.
 
@@ -61,13 +61,13 @@ increase in some measures and decrease in others. The majority vote
 technique ends up being better in Hamming Loss and Subset Accuracy,
 but loses to CLR in Accuracy and Micro-averaged
 F\textsubscript{1}. This leads us to believe that bipartition-based
-ensemble techniques do not offer a significant improvement of general
+ensemble techniques do not offer a significant improvement in general
 performance. However, one-sided measures like precision and recall can
 be greatly improved by using the intersection and union techniques
 which might be handy for specific applications.
 
 Let us now turn to the results yielded by the score-based classifiers
-on display on Table~2. The individual classifiers are clearly
+on display in Table~2. The individual classifiers are clearly
 dominated by CLR which offers the best performance for all the
 evaluation metrics, confirming its appropriateness for the problem at
 hand. In face of this one-sided result, we might not expect the
@@ -80,5 +80,20 @@ classifiers as well. Similarly to \cite{sanden2011enhancing},
 top\textsubscript{3} seems to be the better of the two techniques.
 
 \section{Conclusion}
-A summary of what we observed in the results and the conclusions reached from
-there. Estimated 1/2 of a page (including the references).
+We have seen that the ensemble techniques presented in
+\cite{sanden2011enhancing} have universal applications and can be
+easily used for text classification. We have seen that the
+top\textsubscript{3} and mean ensemble techniques are the best
+performers as in Sanden's and Zhang's research. In our situation, one
+of the preexisting classifiers dominated the other ones in
+performance, yet still the ensemble techniques benefited from
+including all of them. Finally, we have also discovered that CLR seems
+to be a very useful multi-label learner for text classification with a
+small amount of labels.
+
+This work could be continued by examining more sophisticated ways of
+integrating the individual classifiers into an ensemble classifier. We
+might also try adding different multi-label learners to the mix or try
+creating ensemble classifiers using only some learners which perform
+exceedingly well. Another direction might be to try and apply ensemble
+techniques to another problem or field.
