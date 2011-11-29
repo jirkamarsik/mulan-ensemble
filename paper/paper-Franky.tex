@@ -1,0 +1,63 @@
+\section{Multi-label Classification Algorithms}
+The task of multi-label classification is to produce output of $(d_{i}, L_{i})$ from a collection of possible labels $C = \{c_{1}, c_{2},...,c_{N}\}$ for each document in the test dataset of $D_{t} = \{d_{1}, d_{2},...,d_{m}\}$, given the training dataset $D_{r} =\{(d_{1},L_{1}),(d_{2},L_{2}),...,(d_{n},L_{n})\}$, where $L_{i} \subseteq C$. The approach performed to solve this task can be divided into two categories, \emph{problem transformation method} and \emph{algorithm adaptation method} \cite{MLCOverview}.
+
+The \emph{problem transformation method} works by transforming the multi-label classification problem into one or multiple of single label classification problem. Hence, using the single label classifier as a base of multi-label classifier. The \emph{algorithm adaptation method} works by handling the multi-label classification problem directly, by extending the capability of certain classification algorithm.
+
+We use five different multi-label classification algorithms as components for the ensemble techniques. The detail of the algorithms can be found in \cite{MLLChapter} and 	\cite{MLLSlides}.
+
+\emph{RAkEL}\\
+\emph{Random k-Labelset} (\emph{RAkEL}) randomly create $n$ different subset $C_{i} \subseteq C$ of label set $C$ with each having $k$ distinct labels. The classification model for each $C_{i}$ is built using \emph{Label Powerset} (\emph{LP}) method that treats each member $c_{ij}$ of powerset of $C_{i}$, $P(C_{i}) = \{\{\},\{c_{i1}\},\{c_{i2}\},...,\{c_{i1},c_{i2},..,c_{ik}\}\}$ as a single label, and use single label classifier to produce the model. The output from $n$ different models of \emph{LP} classifier are combined to get the final multi-label classification result.
+
+\emph{CLR}\\
+\emph{Calibrated Label Ranking} (\emph{CLR}) produces $q^{2}+q$ different pairs of distinct labels ($c_{i}, c_{j}$), where $q$ is the number of labels in $C$, with an additional of one virtual label $v$ that is used to differentiate the positive and negative labels in the final classification. A model is built for each pair using a single label classifier that only takes training data which contains $c_{i}$ or $c_{j}$ (but not both) as its label. The final classification result is produced by combining all models.
+
+\emph{ML-kNN}\\
+\emph{Multi-label k-Nearest Neighbour} (\emph{ML-kNN}) extends the idea of \emph{kNN} method to perform a multi-label classification. Given a test document $d$, we identify $N(d)$ as the $k$ nearest neighbours of $d$. The $q$-dimensional vector $\vec{C_{d}}$ is created where the $i$-th dimension of $\vec{C_{d}}$ represent the number of members in $N(d)$ having the $i$-th label. The final classification result is calculated using \emph{Maximum A Posteriori} (\emph{MAP}) principle, that estimate how likely for $d$ to have the $i$-th label given its $j$ ($j\le k$) nearest neighbours have the $i$-th label.
+
+\emph{HOMER}\\
+\emph{Hierarchy of Multilabel Classifiers} (\emph{HOMER}) works by constructing a hierarchy tree of labels, with each node considered to have a single label. At the lowest level of the hierarchy, the labels $C$ are divided into $n$ cluster using a \emph{balance clustering algorithm}, with labels in the same cluster have the same parent. Internal node of the tree is given a meta-label $\mu$ and the value is determined by a disjunction of the labels of its childrens $\mu = \bigvee\limits_{j}{}c_{j}$. A model is built for each group of labels that have the same parent, from lowest level to the root, using a multi-label classifier. The classification process starts from the root and recursively processing a test document $d$ until the lowest level to get the resulting labels.
+
+\emph{IBLR}\\
+\emph{Instance Based Logistic Regression} (\emph{IBRL}) combines the instance based learner algorithm with logistic regression method. The basic idea is to consider the labels of neighbouring instances or documents as additional features. This approach is to ensure that the interdependencies between class labels is taken into the classification. More detailed explanation of this algorithm can be found in \cite{IBLR}.
+
+
+\subsection{Ensemble Techniques}
+In this paper, we adapt the ensemble techniques presented in \cite{sanden2011enhancing} into our experiment. Basically, for a test document $d$, a multi-label classifier $K_{j}$ produces two kind of $N$-dimensional vectors, a score vector and a bipartition vector. The score vector $\vec{S^{j}} = \{s^{j}_{1}, s^{j}_{2},..,s^{j}_{N}\}$ contains probability or confidence values $s^{j}_{i}$ for $i$-th label assigned by a classifier $K_{j}$. The bipartition vector $\vec{B^{j}} = \{b^{j}_{1}, b^{j}_{2},..,b^{j}_{N}\}$ contains binary prediction values $b^{j}_{i}$ with value 1 if the classifier predict document $d$ can be assigned to $i$-th label and 0 otherwise. The ensemble techniques presented below are categorized based on the type of the output of the classifier.
+
+\subsubsection{Bipartition-based Ensemble}
+Bipartition-based ensemble takes bipartition vector $\vec{B^{j}}$ from each classification algorithms and combine them together to get the final multi-label classification. We denote the resulting bipartition vector as $\vec{B^{ens}} = \{b^{ens}_{1}, b^{ens}_{2},..,b^{ens}_{N}\}$. The operation to combine the vectors can use simple boolean operations or by simply calculating the number of occurrences of the positive classification for each label. 
+
+\emph{Intersection Rule}\\
+The \emph{Intersection Rule} use an AND boolean operation on each column $i$ of each vector $\vec{B^{j}}$, denoted as $b^{ens}_{i} = \bigwedge\limits_{j}{}b^{j}_{i}$. This rule represents the agreement by all classifiers.
+
+\emph{Union Rule}\\
+The \emph{Union Rule} use an OR boolean operation. In order to get the result, each column $i$ in vector $\vec{B^{j}}$ is combined as $b^{ens}_{i} = \bigvee\limits_{j}{}b^{j}_{i}$. A document will be assigned the $i$-th label if at least one of the classifier give value 1 for the label.
+
+\emph{Majority Vote Rule}\\
+The \emph{Majority Vote Rule} take the majority of the label assigned by the classifiers, and can be denoted as:
+\[b^{ens}_{i} = \left\{
+\begin{array}{cl}
+1 & \textnormal{ if } A(1) \ge A(0) \\
+0 & \textnormal{ otherwise}
+\end{array}\right.\]
+where $A(1)$ is the number of classifiers that give value 1 for $i$-th label and $A(0)$ the number of classifiers that give value 0.
+
+\subsubsection{Score-based Ensemble}
+Score-based ensemble works on score vector $\vec{S}$ of the classification algorithms. We denote the resulting score-based vector as $\vec{S^{ens}} = \{s^{ens}_{1}, s^{ens}_{2},..,s^{ens}_{N}\}$. The resulting classification is determined by using comparisons or by averaging the value for each label.
+
+\emph{Minimum Rule}\\
+The \emph{Minimum Rule} takes the lowest score assigned by classifiers for each $i$-th label. It is calculated as: 
+\[s^{ens}_{i} = min_{j}(s^{j}_i)\]
+
+\emph{Maximum Rule}\\
+Contrary to the \emph{Minimum Rule}, the \emph{Maximum Rule} takes the highest score assigned by classifiers for each $i$-th label. It is calculated as:
+\[s^{ens}_{i} = max_{j}(s^{j}_i)\]
+
+\emph{Mean Rule}\\
+The \emph{Mean Rule} takes an average of the value for $i$-th label from all classifiers. For each column $i$, the value is calculated as:
+\[s^{ens}_{i} = \sum\limits_{j}{}s^{j}_i / M\]
+where $M$ is the number of classifiers used.
+
+\emph{Top-k Rule}\\
+\emph{Top-k Rule} is proposed in \cite{sanden2011enhancing}, that takes an average of the $k$ largest values only. The value $k$ is a constant determined in advance. The value is calculated as:
+\[s^{ens}_{i} = avg(topk_{j}(s^{j}_{i}))\]
